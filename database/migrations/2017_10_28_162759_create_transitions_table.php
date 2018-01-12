@@ -15,7 +15,7 @@ class CreateTransitionsTable extends Migration
         Schema::create('transitions', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('fitness_id');
-            $table->float('value');
+            $table->bigInteger('value');
             $table->text('about');
             $table->integer('user_id');
             $table->timestamps();

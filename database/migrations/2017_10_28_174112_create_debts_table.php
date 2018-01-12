@@ -16,7 +16,7 @@ class CreateDebtsTable extends Migration
             $table->increments('id');
             $table->integer('fitness_id');
             $table->integer('user_id');
-            $table->float('value');
+            $table->bigInteger('value');
             $table->text('about');
             $table->integer('reception_id');
             $table->timestamps();

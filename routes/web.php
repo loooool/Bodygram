@@ -21,7 +21,7 @@ Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('test', function () {
-    echo 6/2*(1+2);
+
 });
 
 Route::get('/home', 'HomeController@index');

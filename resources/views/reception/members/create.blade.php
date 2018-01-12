@@ -24,6 +24,15 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h4 class="m-t-0 m-b-30 header-title">{{trans('form.register_new')}}</h4>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
 
                         {!! Form::open(['method'=>'POST', 'action'=>'ReceptionMemberController@store', 'class'=>'form-horizontal', 'role'=>'form', 'files'=>true, 'onkeypress'=>'return event.keyCode != 13;']) !!}
                         {{csrf_field()}}
@@ -54,10 +63,11 @@
                         <div class="form-group row">
                             <label for="inputName" class="col-3 col-form-label">{{trans('form.birthdate')}}:</label>
                             <div class="col-9">
-                                <div class="input-group">
-                                    <input name="birth_date" type="text" class="form-control" placeholder="mm/dd/yyyy" id="datepicker">
-                                    <span class="input-group-addon bg-primary b-0 text-white"><i class="ion-calendar"></i></span>
-                                </div><!-- input-group -->
+                                <input name="birth_date" type="date" class="form-control" required id="inputDate" placeholder="mm/dd/yyyy">
+                                {{--<div class="input-group">--}}
+                                    {{--<input name="birth_date" type="text" class="form-control" placeholder="mm/dd/yyyy" id="datepicker">--}}
+                                    {{--<span class="input-group-addon bg-primary b-0 text-white"><i class="ion-calendar"></i></span>--}}
+                                {{--</div><!-- input-group -->--}}
                             </div>
                         </div>
                         <div class="form-group row">

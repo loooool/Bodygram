@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="page-title-box">
-                <h4 class="page-title">{{$fitness->name}}</h4>
+                <h4 class="page-title">{{$fitness->name}} @if($errors->has('email')) - Цахим хаяг давхацсан байна @endif</h4>
                 <ol class="breadcrumb float-right">
                     <li class="breadcrumb-item"><a href="#">Bodygram</a></li>
                     <li class="breadcrumb-item active">{{trans('form.add_worker')}}</li>
@@ -26,6 +26,15 @@
                     <div class="col-md-12">
                         <h4 class="m-t-0 m-b-30 header-title">{{trans('form.register_new')}}</h4>
 
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         {!! Form::open(['method'=>'POST', 'action'=>'AdminUserController@store', 'class'=>'form-horizontal', 'role'=>'form', 'files'=>true]) !!}
                         {{csrf_field()}}
                             <div class="form-group row">
@@ -40,7 +49,7 @@
                             <div class="form-group row">
                                 <label for="inputName" class="col-3 col-form-label">{{trans('form.name')}}:</label>
                                 <div class="col-9">
-                                    <input name="name" type="text" class="form-control" id="inputName" placeholder="{{trans('form.name')}}">
+                                    <input name="name" type="text" class="form-control" required id="inputName" placeholder="{{trans('form.name')}}">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -55,10 +64,12 @@
                             <div class="form-group row">
                                 <label for="inputName" class="col-3 col-form-label">{{trans('form.birthdate')}}:</label>
                                 <div class="col-9">
-                                    <div class="input-group">
-                                        <input name="birth_date" type="text" class="form-control" placeholder="mm/dd/yyyy" id="datepicker-autoclose">
-                                        <span class="input-group-addon bg-primary b-0 text-white"><i class="ion-calendar"></i></span>
-                                    </div><!-- input-group -->
+                                    <input name="birth_date" type="date" class="form-control" required id="inputDate" placeholder="mm/dd/yyyy">
+                                    {{--<div class="input-group">--}}
+                                        {{--<input name="birth_date" type="text" class="form-control" required placeholder="mm/dd/yyyy" id="datepicker-autoclose">--}}
+                                        {{--<span class="input-group-addon bg-primary b-0 text-white"><i class="ion-calendar"></i></span>--}}
+
+                                    {{--</div><!-- input-group -->--}}
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -74,13 +85,14 @@
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-3 col-form-label">{{trans('form.email')}}:</label>
                                 <div class="col-9">
-                                    <input name="email" type="email" class="form-control" id="inputEmail3" placeholder="{{trans('form.email')}}">
+                                    <input name="email" type="email" class="form-control" required id="inputEmail3" placeholder="{{trans('form.email')}}">
+
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputName" class="col-3 col-form-label">{{trans('form.phone')}}:</label>
                                 <div class="col-9">
-                                    <input name="phone" type="text" class="form-control" id="inputPhone" placeholder="{{trans('form.phone')}}">
+                                    <input name="phone" type="number" class="form-control" required id="inputPhone" placeholder="{{trans('form.phone')}}">
                                 </div>
                             </div>
 
@@ -145,4 +157,11 @@
     <script src="{{asset('plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
     <script src="{{asset('plugins/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
     <script src="{{asset('assets/pages/jquery.form-advanced.init.js')}}"></script>
+
+    <script type="text/javascript" src="{{asset('plugins/parsleyjs/dist/parsley.min.js')}}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('form').parsley();
+        });
+    </script>
 @stop

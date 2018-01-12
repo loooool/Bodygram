@@ -29,8 +29,8 @@ class ReceptionRegisterMember extends Request
             'name' => 'required',
             'sex' => 'required',
             'category_id' => 'required',
-            'birth_date' => 'required|date_format:m/d/Y',
-            'email' => 'required|email',
+            'birth_date' => 'required',
+            'email' => 'required|email|unique:users,email',
             'phone' => 'required',
             'code' => 'required',
         ];

@@ -18,7 +18,7 @@
     <div class="row">
         @foreach($results->get() as $result)
 
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-4 col-md-6">
             <div class="text-center card-box">
                 <div class="member-card">
                     <div class="thumb-lg member-thumb m-b-10 center-page">

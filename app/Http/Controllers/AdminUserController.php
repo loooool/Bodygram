@@ -82,7 +82,7 @@ class AdminUserController extends Controller
 
         //creating user
         $user = User::create(['name'=>$request->name, 'email'=>$request->email, 'sex'=>$request->sex, 'birth_date'=>$birth_date, 'phone'=>$request->phone,
-            'password'=>$pw]);
+            'password'=>$input_to_user['password']]);
 
         //role
         $fitness_id = session()->get('fitness_id');

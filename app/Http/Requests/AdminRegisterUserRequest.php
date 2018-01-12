@@ -8,7 +8,7 @@ class AdminRegisterUserRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
+     * thing goes skrra pu
      * @return bool
      */
     public function authorize()
@@ -27,9 +27,9 @@ class AdminRegisterUserRequest extends Request
             //
             'name' => 'required',
             'sex' => 'required',
-            'birth_date' => 'required|date_format:m/d/Y',
+            'birth_date' => 'required',
             'role' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
             'phone' => 'required',
         ];
     }

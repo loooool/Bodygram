@@ -14,7 +14,7 @@ class AddDebtToFitnessUsers extends Migration
     {
         Schema::table('fitness_users', function (Blueprint $table) {
             //
-            $table->float('debt')->after('code');
+            $table->bigInteger('debt')->after('code');
         });
     }
 

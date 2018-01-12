@@ -219,16 +219,17 @@ class ReceptionMemberController extends Controller
                 Transition::create(['fitness_id'=>$fitness_id, 'value'=>$debt_value, 'about'=>$pack->name, 'user_id'=>Auth::user()->id]);
                 return redirect(route('reception.members.show', $user_id));
             } else {
-                Expense::create(['fitness_id'=>$fitness_id, 'user_id'=>$user_id, 'value'=>$pack->price, 'about'=>$pack->name, 'reception_id'=>Auth::user()->id]);
-                Transition::create(['fitness_id'=>$fitness_id, 'value'=>$pack->price, 'about'=>$pack->name, 'user_id'=>Auth::user()->id]);
+                Expense::create(['fitness_id'=>$fitness_id, 'user_id'=>$user_id, 'value'=> $pack->price, 'about'=>$pack->name, 'reception_id'=>Auth::user()->id]);
+                Transition::create(['fitness_id'=>$fitness_id, 'value'=> $pack->price, 'about'=>$pack->name, 'user_id'=>Auth::user()->id]);
                 return redirect(route('reception.members.show', $user_id));
             }
         } else {
-            Expense::create(['fitness_id'=>$fitness_id, 'user_id'=>$user_id, 'value'=>$pack->price, 'about'=>$pack->name, 'reception_id'=>Auth::user()->id]);
-            Transition::create(['fitness_id'=>$fitness_id, 'value'=>$pack->price, 'about'=>$pack->name, 'user_id'=>Auth::user()->id]);
+            Expense::create(['fitness_id'=>$fitness_id, 'user_id'=>$user_id, 'value'=>sprintf("%.2f", $pack->price), 'about'=>$pack->name, 'reception_id'=>Auth::user()->id]);
+            Transition::create(['fitness_id'=>$fitness_id, 'value'=> $pack->price, 'about'=>$pack->name, 'user_id'=>Auth::user()->id]);
             return redirect(route('reception.members.show', $user_id));
         }
     }
+
     public function debt(TransitionRequest $request){
         $fitness_id = session()->get('reception_fitness_id');
         $user_id = $request->user_id;
@@ -243,6 +244,7 @@ class ReceptionMemberController extends Controller
         Debt::create(['fitness_id'=>$fitness_id, 'user_id'=>$user_id, 'value'=>$value, 'about'=>$about, 'reception_id'=>Auth::user()->id]);
         return redirect(route('reception.members.show', $user_id));
     }
+
     public function pay(TransitionRequest $request){
         $fitness_id = session()->get('reception_fitness_id');
         $user_id = $request->user_id;

@@ -17,7 +17,7 @@ class CreateFitnessUsersTable extends Migration
             $table->integer('fitness_id');
             $table->integer('user_id');
             $table->integer('role_id');
-            $table->integer('code');
+            $table->string('code');
             $table->date('end_date');
             $table->timestamps();
 
